@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 function ShowCard({show, onShowClicked, onShowDelete, myShows, setMyShows}) {
 
     /** 
@@ -11,6 +12,7 @@ function ShowCard({show, onShowClicked, onShowDelete, myShows, setMyShows}) {
      * Output: image src
      * */
     function getStreamingLogo(streamOnString) {
+        console.log(myShows)
         let imgSrc;
         switch (streamOnString) {
             case "Amazon":
@@ -33,21 +35,15 @@ function ShowCard({show, onShowClicked, onShowDelete, myShows, setMyShows}) {
     }
 
     return(
-        <div className="show-card" onClick={() => {
-            if (!myShows.map(show => show.id).includes(show.id)) {
-                    setMyShows([...myShows, show])
-                }
-            }
-        }>
+        <div className="show-card">
             <img src={show.image} alt="cover art" className="show-art"/>
             <div className="details-container">
                 <header>
                     <h3>{show.name}</h3>                    
                 </header>
-                <p>{show.summary}</p>
                 <footer>
                     <img src={getStreamingLogo(show.stream_on)} alt={show.stream_on} className="streaming-logo"></img>
-                    <button onClick={() => console.log("Clicked delete...")}>Delete</button>
+                    <button onClick={() => setMyShows(myShows.filter(myShow => myShow.id !== show.id))}>Delete</button>
                 </footer>
             </div>
         </div>

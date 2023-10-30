@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MyWatchList from './MyWatchList'
 import ShowList from './ShowList'
 
-function ShowCatalog() {
+function ShowCatalog({shows}) {
+
+    const [myShows, setMyShows] = useState([])
 
     return(
         <>
-            <MyWatchList />
+            <MyWatchList myShows={myShows} setMyShows={setMyShows}/>
             <hr/>
-            <ShowList />
+            <ShowList shows={shows} myShows={myShows} setMyShows={setMyShows}/>
         </>
     );
 }
